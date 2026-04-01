@@ -1,0 +1,10 @@
+tasks:
+  - id: "TASK-0001"
+    title: "Example thin slice"
+    status: "in_progress"
+    owner: "builder-organizer-a"
+    participants:
+      - "builder-organizer-a"
+    next_actor: "builder-organizer-a"
+    branch: "feature/task-0001-example"
+    worktree: "../ostack-task-0001"
