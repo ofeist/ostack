@@ -167,6 +167,7 @@ Reviewer:
 - does not change task scope
 - writes findings and review outcomes in task-local handoff files
 - commits and pushes completed review handoff artifacts so the review is visible to other agents
+- stops and reports instead of committing if unrelated working-tree changes make a review-only commit unsafe
 
 Minimal reviewability rule:
 - a task is reviewable when it has entered execution and the Builder has finished the current reviewable slice

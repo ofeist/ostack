@@ -56,6 +56,10 @@ Write boundaries:
 - do not update `tasks.yaml`
 - do not update `state.yaml`
 - limit commits and pushes to the review handoff artifact(s) created for that review slice
+- stage only the review handoff artifact(s) created in the current review cycle
+- commit only those staged review handoff artifact(s)
+- do not use broad staging such as `git add .` for review commits
+- if unrelated working-tree changes are present, stop and report that the branch is not clean enough for a review-only commit
 - if task routing or review state is wrong, missing, or inconsistent, stop and report it in the review output and review handoff instead of mutating workflow state
 - do not implement product or workflow changes as part of review unless explicitly instructed
 
@@ -72,6 +76,6 @@ Rules:
 - do not rewrite prior handoff history except for minor typo fixes
 - keep one writer on the active branch at a time
 - respect the worktree policy
-- after recording a completed review handoff, commit that review artifact as a meaningful review slice and push the current branch
+- after recording a completed review handoff, commit that review artifact as a meaningful review slice and push the current branch only after the review-only commit succeeds
 - do not merge
 - do not implement fixes unless explicitly instructed
