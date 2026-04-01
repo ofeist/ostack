@@ -15,3 +15,11 @@ task opening and task execution are separate steps
 new tasks start as draft
 implementation begins only after explicit approval moves a task to ready
 ```
+
+## Reviewer init
+
+To initialize the Reviewer in a new Codex session:
+
+```text
+Initialize from `agentic/prompts/init-reviewer.md`. Do not start implementation.
+```

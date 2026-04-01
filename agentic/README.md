@@ -147,6 +147,32 @@ That role:
 - writes explicit handoff files for checkpoints, blockers, review requests, and completion
 - follows the worktree policy
 
+## Reviewer
+
+Reviewer initialization comes from `agentic/prompts/init-reviewer.md`.
+
+Reviewer reads, in order:
+- `AGENTS.md` if present
+- `agentic/README.md`
+- `agentic/prompts/REVIEWER_PROMPT.txt`
+- `agentic/tasks.yaml`
+- `agentic/state.yaml`
+- the assigned task folder under `agentic/tasks/<task-id>/`
+
+Reviewer is used after Builder execution for a reviewable slice.
+
+Reviewer:
+- reviews only
+- does not implement
+- does not change task scope
+- writes findings and review outcomes in task-local handoff files
+
+Minimal reviewability rule:
+- a task is reviewable when it has entered execution and the Builder has finished the current reviewable slice
+- `approve` means no material issues were found for the approved slice
+- `changes_requested` means the slice must go back to Builder for fixes before approval
+- `blocked` means review cannot proceed because required review context, routing, or reviewable task state is missing or inconsistent
+
 ## Minimal Flow
 
 1. Copy `agentic/state.example.yaml` to `agentic/state.yaml` if runtime state has not been initialized yet.
