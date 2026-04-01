@@ -6,7 +6,7 @@ TASK-0002
 Use the next available `TASK-####` identifier from the existing set under `agentic/tasks/` whose basename matches `TASK-####` or starts with `TASK-####-`.
 
 ## Status
-`ready`
+`done`
 
 When a task is first opened, start at `draft`. Move to `ready` only after explicit approval to begin implementation. Move to `in_progress` only when Builder-Organizer actually begins execution. Use `done` only when the task is actually complete. When a task reaches `done`, clear the task-level `next_actor` in `tasks.yaml` to `null`.
 
@@ -97,6 +97,10 @@ Current draft note:
 Ready-state note:
 - the cleanup slice is approved as a narrow administrative task
 - execution has not started yet; no execution-start handoff should be written until Builder-Organizer actually begins work
+
+Completion note:
+- current runtime state is consistent with the actual baseline after the first Builder-Reviewer loop
+- TASK-0001 review handoff `0003` remains intentionally preserved as historical context because it is explicitly superseded by override handoff `0004`
 
 ## Coordination Notes
 Runtime coordination belongs in `state.yaml`, `tasks.yaml`, and task-local handoff files.

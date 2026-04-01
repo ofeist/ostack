@@ -1,6 +1,6 @@
 session:
-  objective: "TASK-0002 is ready for execution"
-  updated_at: "2026-04-01T19:58:39+02:00"
+  objective: "Await next task opening"
+  updated_at: "2026-04-01T20:21:34+02:00"
   coordination_mode: "single-owner"
   parallelism:
     mode: "serial"
@@ -10,5 +10,5 @@ session:
 active_roles:
   - "builder-organizer"
 
-next_actor: "builder-organizer-a"
+next_actor: null
 blockers: []
