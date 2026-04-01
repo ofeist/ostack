@@ -66,8 +66,24 @@ agentic/
 ## Naming Conventions
 
 - worktrees use `../worktrees/<repo>-<task-id>-<actor-id>`
-- branches use `feature/<task-id>-<slug>`
+- branches use `<type>/<task-id>-<slug>`
 - task handoff files use `NNNN-<actor-id>-<event>.md`
+
+## Task ID Rule
+
+- task ids use `TASK-####`
+- determine the next id from the set of existing `TASK-####` identifiers under `agentic/tasks/`
+- the next task id is the next zero-padded number in that sequence
+
+## Branch Naming Rule
+
+- allowed task types are `feature`, `fix`, `chore`, and `docs`
+- branches use `<type>/<task-id>-<slug>`
+- examples:
+  - `feature/task-0001-bootstrap-runtime-files`
+  - `fix/task-0002-correct-task-routing`
+  - `chore/task-0003-align-worktree-policy`
+  - `docs/task-0004-clarify-builder-prompt`
 
 ## Agent Config Note
 
@@ -113,6 +129,30 @@ An agent should initialize in this order:
 2. Read `tasks.yaml` to determine task ownership, branch, worktree, and task-level next actor.
 3. Read `state.yaml` to understand the global objective, blockers, and global next actor.
 4. Read the selected task folder to execute the task and record task-local handoffs.
+
+## Builder-Organizer Return Format
+
+Startup:
+- Actor: `<actor-id>`
+- Role: `Builder-Organizer`
+- Task: `<task-id>`
+- Branch: `<branch>`
+- Worktree: `<worktree>`
+- Task Folder: `<task-folder>`
+- Owner: `yes|no`
+- Task Next Actor: `<actor-id>`
+- Action: `<next planned action>`
+
+Completion:
+- Task: `<task-id>`
+- Branch: `<branch>`
+- Worktree: `<worktree>`
+- Handoff: `<handoff-file-path>`
+- Tasks Updated: `yes|no`
+- State Updated: `yes|no`
+- Verification: `<short result>`
+- Next Actor: `<actor-id>`
+- Outcome: `<ready_for_review|blocked|done|in_progress>`
 
 ## Legacy Material
 

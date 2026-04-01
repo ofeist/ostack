@@ -15,7 +15,8 @@ Use separate worktrees when parallel work is needed, but keep the first usable w
 ## Naming Convention
 
 - worktrees use `../worktrees/<repo>-<task-id>-<actor-id>`
-- branches use `feature/<task-id>-<slug>`
+- branches use `<type>/<task-id>-<slug>`
+- allowed task types are `feature`, `fix`, `chore`, and `docs`
 - future review or QA branches may use `review/<task-id>-<slug>` or `qa/<task-id>-<slug>` when needed
 
 Actor-aware worktree naming matters because it keeps concurrent task work readable, avoids collisions when more than one agent touches the same task, and makes ownership visible in `tasks.yaml` and local filesystem layout.

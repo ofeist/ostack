@@ -3,11 +3,13 @@
 ## ID
 TASK-0001
 
+Use the next available `TASK-####` identifier from the existing set under `agentic/tasks/`.
+
 ## Status
 `draft` | `ready` | `in_progress` | `review` | `qa` | `blocked` | `done`
 
 ## Branch
-`feature/<task-id>-<slug>`
+`<type>/<task-id>-<slug>`
 
 ## Goal
 What should be achieved?

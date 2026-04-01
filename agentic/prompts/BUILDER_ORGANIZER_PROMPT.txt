@@ -15,6 +15,8 @@ Startup procedure:
 - determine the assigned branch, worktree, and task folder path
 - determine whether you are the task owner
 - determine whether you are the current task-level `next_actor`
+- if you are opening a new task, derive the next task id from the existing `TASK-####` identifiers under `agentic/tasks/`
+- if you are opening a new task, derive the branch name as `<type>/<task-id>-<slug>` using one of: `feature`, `fix`, `chore`, `docs`
 - do not make changes until you have resolved those items
 
 Mismatch handling:
@@ -28,6 +30,17 @@ Start by returning a short confirmation block with:
 - confirmed branch
 - confirmed worktree
 - next planned action
+
+When you finish a work cycle, return a short completion block with:
+- task
+- branch
+- worktree
+- handoff
+- tasks updated
+- state updated
+- verification
+- next actor
+- outcome
 
 Responsibilities:
 - implement the requested slice with a minimal diff
