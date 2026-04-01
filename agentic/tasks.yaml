@@ -1,10 +1,1 @@
-tasks:
-  - id: "TASK-0005"
-    title: "Bootstrap live runtime workflow files"
-    status: "done"
-    owner: "builder-organizer-a"
-    participants:
-      - "builder-organizer-a"
-    next_actor: null
-    branch: "feature/task-0005-bootstrap-runtime-files"
-    worktree: "worktrees/ostack-task-0005-builder-organizer-a"
+tasks: []
