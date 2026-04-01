@@ -23,3 +23,11 @@ To initialize the Reviewer in a new Codex session:
 ```text
 Initialize from `agentic/prompts/init-reviewer.md`. Do not start implementation.
 ```
+
+## QA init
+
+To initialize QA in a new Codex session:
+
+```text
+Initialize from `agentic/prompts/init-qa.md`. Do not start implementation.
+```
