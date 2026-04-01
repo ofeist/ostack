@@ -1,0 +1,16 @@
+tasks:
+  - id: TS12-03
+    title: "Console presets UX"
+    status: "in_review"
+    owner: "builder-a"
+    branch: "feat/iter12-ts03"
+    worktree: "../worktrees/gaas-ts12-03"
+    next_action: "reviewer-a review"
+
+  - id: TS12-05
+    title: "Preset deployment smoke test"
+    status: "todo"
+    owner: "qa-a"
+    branch: "feat/iter12-ts05"
+    worktree: "../worktrees/gaas-ts12-05-qa"
+    next_action: "wait for TS12-03 completion"

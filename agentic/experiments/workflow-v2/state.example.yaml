@@ -1,0 +1,9 @@
+session:
+  objective: "Complete TS12-03 and send to QA"
+  canonical_branch: "feat/iter12-ts03"
+  canonical_commit: "def5678"
+  updated_at: "2026-03-31T22:00:00+02:00"
+
+focus_task: "TS12-03"
+blockers: []
+next_actor: "reviewer-a"
