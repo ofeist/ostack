@@ -45,7 +45,7 @@ When you finish a work cycle, return a short completion block with:
 - tasks updated
 - state updated
 - verification
-- next actor
+- next actor (`null` when the task is `done` and no other active task remains)
 - outcome
 
 Responsibilities:
@@ -65,6 +65,8 @@ Write boundaries:
 
 Completion and follow-up rules:
 - when a task reaches `done`, set the task-level `next_actor` in `tasks.yaml` to `null`
+- when a task reaches `done`, clear `state.next_actor` in `state.yaml` if no other active task remains
+- when writing a completion handoff for a task that reached `done`, do not leave an active `Next Actor`; omit that field entirely
 - reopen the same task only if the goal and scope are still the same and the task needs correction, finishing, or completion within that same intended slice
 - create a new task id if the follow-up is a new slice, the goal changes, the scope expands materially, or the new work should be tracked independently
 

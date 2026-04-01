@@ -1,1 +1,11 @@
-tasks: []
+tasks:
+  - id: "TASK-0001"
+    title: "Document runtime file lifecycle for workflow"
+    status: "done"
+    owner: "builder-organizer-a"
+    participants:
+      - "builder-organizer-a"
+    branch: "docs/task-0001-runtime-file-lifecycle"
+    worktree: "worktrees/ostack-task-0001-builder-organizer-a"
+    next_actor: null
+    next_action: "Completed"

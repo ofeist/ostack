@@ -44,6 +44,43 @@ Initialize the live runtime files with:
 bash agentic/bootstrap-runtime.sh
 ```
 
+## Runtime File Lifecycle
+
+### `*.example.yaml` Files
+
+- `agentic/state.example.yaml`, `agentic/tasks.example.yaml`, and `agentic/agent-config.example.yaml` are committed scaffold files
+- they define the baseline shape for fresh runtime initialization
+- they are portable and should be copied when this workflow is ported to another repo
+- they are not the active coordination state for a running repo
+
+### Live Runtime Files
+
+- `agentic/state.yaml`, `agentic/tasks.yaml`, and `agentic/agent-config.yaml` are live runtime files for the current repo
+- in the active workflow, these live runtime files are committed repo state because they are the shared source of truth used by agents and humans coordinating work
+- live runtime files are repo-specific and should not be copied into a different repo as part of workflow porting
+- task instances under `agentic/tasks/<task-id>/` and their handoff history are also live repo-specific runtime history
+
+### Commit Policy
+
+- commit the workflow scaffold:
+  - `agentic/README.md`
+  - `agentic/*.example.yaml`
+  - prompts, workflow docs, and templates
+- commit the live runtime files for the active repo:
+  - `agentic/state.yaml`
+  - `agentic/tasks.yaml`
+  - `agentic/agent-config.yaml`
+  - active task folders and task-local handoffs
+- do not treat one repo's live runtime files or task history as portable defaults for another repo
+
+### Initialization Policy
+
+- in a new repo that has the workflow scaffold but no live runtime files yet, initialize the live runtime files by running `bash agentic/bootstrap-runtime.sh`
+- the bootstrap script copies each `*.example.yaml` file to its live runtime counterpart once and refuses to overwrite an existing live runtime file
+- on a new machine for an already initialized repo, use the live runtime files that come from the repo checkout or a fresh pull
+- do not rerun the bootstrap script on an already initialized repo unless the live runtime files are intentionally absent
+- if a repo is being ported or created fresh, start from the committed example files and initialize fresh live runtime state for that repo
+
 ## Core Model
 
 - `state.yaml` is the global coordination snapshot.
@@ -96,16 +133,9 @@ bash agentic/bootstrap-runtime.sh
 
 ## Agent Config Note
 
-`agent-config.yaml` runtime handling is not finalized yet.
-
-For now, the workflow starts from `agentic/agent-config.example.yaml`.
-
-Future repos or teams may choose one of these models:
-- committed shared runtime config
-- local runtime config
-- shared base plus local override
-
-This should be refined after real usage, not overdesigned up front.
+- `agentic/agent-config.example.yaml` is the committed scaffold source for initialization
+- `agentic/agent-config.yaml` is the live runtime file used by the active repo after initialization
+- under the current workflow, `agent-config.yaml` follows the same live-runtime lifecycle as `state.yaml` and `tasks.yaml`
 
 ## Initial Role
 
@@ -116,6 +146,32 @@ That role:
 - keeps task coordination current
 - writes explicit handoff files for checkpoints, blockers, review requests, and completion
 - follows the worktree policy
+
+## Reviewer
+
+Reviewer initialization comes from `agentic/prompts/init-reviewer.md`.
+
+Reviewer reads, in order:
+- `AGENTS.md` if present
+- `agentic/README.md`
+- `agentic/prompts/REVIEWER_PROMPT.txt`
+- `agentic/tasks.yaml`
+- `agentic/state.yaml`
+- the assigned task folder under `agentic/tasks/<task-id>/`
+
+Reviewer is used after Builder execution for a reviewable slice.
+
+Reviewer:
+- reviews only
+- does not implement
+- does not change task scope
+- writes findings and review outcomes in task-local handoff files
+
+Minimal reviewability rule:
+- a task is reviewable when it has entered execution and the Builder has finished the current reviewable slice
+- `approve` means no material issues were found for the approved slice
+- `changes_requested` means the slice must go back to Builder for fixes before approval
+- `blocked` means review cannot proceed because required review context, routing, or reviewable task state is missing or inconsistent
 
 ## Minimal Flow
 
@@ -130,7 +186,7 @@ That role:
 9. Write the first execution-start handoff only when the task moves from `ready` to `in_progress`.
 10. Hand off or close the task explicitly.
 
-The bootstrap script initializes the runtime files from the committed example files and refuses to overwrite existing runtime files.
+The bootstrap script initializes missing live runtime files from the committed example files and refuses to overwrite existing runtime files.
 
 ## Startup Model
 
