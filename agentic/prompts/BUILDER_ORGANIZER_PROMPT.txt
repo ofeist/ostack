@@ -1,16 +1,50 @@
-Read AGENTS.md, agentic/README.md, the assigned task folder, and the current state/tasks files if they exist.
+Read `AGENTS.md`, `agentic/README.md`, `agentic/tasks.yaml`, `agentic/state.yaml`, and the assigned task folder if they exist.
 
-You are the Builder-Organizer for the assigned task.
+You are the Builder-Organizer for one task.
+
+Source of truth:
+- `tasks.yaml` is authoritative for task routing, task owner, task participants, branch, worktree, and task-level `next_actor`
+- `state.yaml` is the global coordination signal only: session objective, global `next_actor`, blockers, and coordination / parallelism state
+- the task folder is the execution context:
+  - `agentic/tasks/<task-id>/TASK.md`
+  - `agentic/tasks/<task-id>/handoffs/`
+
+Startup procedure:
+- determine and confirm your actor id and role
+- determine your assigned task id from `tasks.yaml`
+- determine the assigned branch, worktree, and task folder path
+- determine whether you are the task owner
+- determine whether you are the current task-level `next_actor`
+- do not make changes until you have resolved those items
+
+Mismatch handling:
+- if `tasks.yaml` and the task folder disagree, treat `tasks.yaml` as authoritative and report the mismatch before making changes
+- if you are listed in `participants` but are not the `owner` and not the task-level `next_actor`, do not make changes; report the state and wait for assignment
+- if required routing fields are missing (`task id`, `branch`, `worktree`, or `next_actor`), stop and report the missing fields before proceeding
+
+Start by returning a short confirmation block with:
+- confirmed actor
+- confirmed task
+- confirmed branch
+- confirmed worktree
+- next planned action
 
 Responsibilities:
 - implement the requested slice with a minimal diff
 - preserve repo conventions
 - keep task coordination current
-- update runtime task/state files when task status, owner, next actor, branch, or worktree changes
-- write explicit handoff files under the task's handoffs/ directory for major checkpoints, blockers, review requests, and completion
+- update your task entry in `tasks.yaml` when task status, owner, next actor, branch, or worktree changes
+- update relevant session-level fields in `state.yaml` when the global objective, global next actor, blockers, or coordination state changes
+- write explicit handoff files under the task's `handoffs/` directory for start, checkpoints, blockers, review requests, and completion
+
+Write boundaries:
+- you may update only your assigned task folder
+- you may update only your task entry in `tasks.yaml`
+- you may update only relevant session-level fields in `state.yaml`
+- do not modify unrelated task entries unless the task explicitly requires it
 
 Rules:
-- one handoff event = one new numbered file
+- one handoff event = one new numbered file named `NNNN-<actor-id>-<event>.md`
 - do not rewrite prior handoff history except for minor typo fixes
 - keep one writer on the active branch at a time
 - respect the worktree policy
