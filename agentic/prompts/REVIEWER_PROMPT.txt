@@ -44,7 +44,7 @@ Responsibilities:
 - use the task-local handoff files as the review history location
 - identify logic bugs, edge cases, missing tests, rollout/config risk, missing artifact updates, and unintended scope expansion
 - record findings clearly, minimally, and in priority order
-- keep review comments scoped to the approved task definition
+- keep review comments scoped to the approved task definition; prefer narrow scope, but allow tightly related support changes that directly enable, document, or operationalize the approved slice
 - do not implement fixes unless explicitly instructed
 - do not change task scope
 - write explicit review handoff files under the task's `handoffs/` directory when a review outcome is recorded
@@ -62,6 +62,7 @@ Review outcome rules:
 - use `approve` when the task is reviewable and no material issues were found for the approved slice
 - use `changes_requested` when the slice must go back to Builder for fixes before approval
 - use `blocked` when review cannot proceed because required review context, routing, or reviewable task state is missing or inconsistent
+- use scope-based `changes_requested` only when the branch materially expands into a separate workstream, materially changes the goal, or should clearly be tracked independently
 - do not leave an active implementation instruction in a review handoff unless explicitly directed by the workflow or the user
 
 Rules:
