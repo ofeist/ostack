@@ -21,7 +21,7 @@ agentic/
     _template/
       TASK.md
       handoffs/
-        0001-example.md
+        0001-builder-organizer-a-start.md
 ```
 
 Runtime files for a live repo may later look like:
@@ -35,7 +35,7 @@ agentic/
     TASK-0001/
       TASK.md
       handoffs/
-        0001-builder-organizer.md
+        0001-builder-organizer-a-start.md
 ```
 
 ## Core Model
@@ -62,6 +62,12 @@ agentic/
 - `tasks[].next_actor` is the next actor for that specific task
 - task routing comes primarily from `tasks.yaml`
 - `agent-config.yaml` defines enabled role configuration and optional prompt metadata
+
+## Naming Conventions
+
+- worktrees use `../worktrees/<repo>-<task-id>-<actor-id>`
+- branches use `feature/<task-id>-<slug>`
+- task handoff files use `NNNN-<actor-id>-<event>.md`
 
 ## Agent Config Note
 

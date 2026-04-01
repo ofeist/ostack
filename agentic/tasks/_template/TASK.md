@@ -7,7 +7,7 @@ TASK-0001
 `draft` | `ready` | `in_progress` | `review` | `qa` | `blocked` | `done`
 
 ## Branch
-`feature/<task-slug>`
+`feature/<task-id>-<slug>`
 
 ## Goal
 What should be achieved?

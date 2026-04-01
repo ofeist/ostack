@@ -12,7 +12,7 @@ Port the workflow skeleton and templates only.
 - `agentic/workflows/WORKTREE_POLICY.md`
 - `agentic/workflows/PORTING.md`
 - `agentic/tasks/_template/TASK.md`
-- `agentic/tasks/_template/handoffs/0001-example.md`
+- `agentic/tasks/_template/handoffs/0001-builder-organizer-a-start.md`
 
 Optional:
 - `agentic/planning/INITIATIVE_TEMPLATE.md`

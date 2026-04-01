@@ -1,10 +1,10 @@
 tasks:
   - id: "TASK-0001"
-    title: "Example thin slice"
+    title: "Bootstrap runtime files"
     status: "in_progress"
     owner: "builder-organizer-a"
     participants:
       - "builder-organizer-a"
     next_actor: "builder-organizer-a"
-    branch: "feature/task-0001-example"
-    worktree: "../ostack-task-0001"
+    branch: "feature/task-0001-bootstrap-runtime-files"
+    worktree: "../worktrees/ostack-task-0001-builder-organizer-a"
