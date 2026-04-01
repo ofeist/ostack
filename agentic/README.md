@@ -11,6 +11,7 @@ agentic/
   README.md
   state.example.yaml
   tasks.example.yaml
+  agent-config.example.yaml
   prompts/
     BUILDER_ORGANIZER_PROMPT.txt
   workflows/
@@ -29,6 +30,7 @@ Runtime files for a live repo may later look like:
 agentic/
   state.yaml
   tasks.yaml
+  agent-config.yaml
   tasks/
     TASK-0001/
       TASK.md
@@ -40,6 +42,7 @@ agentic/
 
 - `state.yaml` is the global coordination snapshot.
 - `tasks.yaml` is the registry of active tasks.
+- `agent-config.yaml` enables roles and documents startup conventions for those roles.
 - `tasks/<task-id>/TASK.md` holds task scope and acceptance criteria.
 - `tasks/<task-id>/handoffs/` holds task-local coordination history.
 - one handoff event = one file
@@ -50,6 +53,15 @@ agentic/
 
 - all new tasks must use `agentic/tasks/<task-id>/`
 - legacy top-level handoffs are reference-only
+- `agent-config.yaml` does not assign work
+- `tasks.yaml` is the authoritative source for task assignment and positioning
+
+## Metadata Precedence
+
+- `state.next_actor` is the global next actor
+- `tasks[].next_actor` is the next actor for that specific task
+- task routing comes primarily from `tasks.yaml`
+- `agent-config.yaml` defines enabled role configuration and optional prompt metadata
 
 ## Initial Role
 
@@ -65,13 +77,23 @@ That role:
 
 1. Copy `agentic/state.example.yaml` to `agentic/state.yaml` if runtime state has not been initialized yet.
 2. Copy `agentic/tasks.example.yaml` to `agentic/tasks.yaml` if the task registry has not been initialized yet.
-3. Copy `agentic/tasks/_template/` to `agentic/tasks/TASK-0001/`.
-4. Fill in `TASK.md`.
-5. Create or update `tasks.yaml`.
-6. Create or update `state.yaml`.
-7. Work in the assigned branch and worktree.
-8. Write numbered handoff files under `handoffs/`.
-9. Hand off or close the task explicitly.
+3. Copy `agentic/agent-config.example.yaml` to `agentic/agent-config.yaml` if role activation config has not been initialized yet.
+4. Copy `agentic/tasks/_template/` to `agentic/tasks/TASK-0001/`.
+5. Fill in `TASK.md`.
+6. Create or update `tasks.yaml`.
+7. Create or update `state.yaml`.
+8. Work in the assigned branch and worktree.
+9. Write numbered handoff files under `handoffs/`.
+10. Hand off or close the task explicitly.
+
+## Startup Model
+
+An agent should initialize in this order:
+
+1. Read `agent-config.yaml` to see which roles are enabled and any optional prompt metadata for those roles.
+2. Read `tasks.yaml` to determine task ownership, branch, worktree, and task-level next actor.
+3. Read `state.yaml` to understand the global objective, blockers, and global next actor.
+4. Read the selected task folder to execute the task and record task-local handoffs.
 
 ## Legacy Material
 
