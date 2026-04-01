@@ -63,6 +63,19 @@ agentic/
 - task routing comes primarily from `tasks.yaml`
 - `agent-config.yaml` defines enabled role configuration and optional prompt metadata
 
+## Agent Config Note
+
+`agent-config.yaml` runtime handling is not finalized yet.
+
+For now, the workflow starts from `agentic/agent-config.example.yaml`.
+
+Future repos or teams may choose one of these models:
+- committed shared runtime config
+- local runtime config
+- shared base plus local override
+
+This should be refined after real usage, not overdesigned up front.
+
 ## Initial Role
 
 The initial active role is `Builder-Organizer`.

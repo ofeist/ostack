@@ -32,3 +32,14 @@ Optional:
 - do not overwrite existing tasks in the target repo
 - do not overwrite existing live runtime files without an explicit decision
 - treat the portable unit as workflow scaffolding, not active task history
+
+## Agent Config Runtime Note
+
+`agent-config.yaml` runtime handling is not finalized yet.
+
+For now, initialize from `agentic/agent-config.example.yaml`.
+
+Future repos or teams may choose:
+- committed shared runtime config
+- local runtime config
+- shared base plus local override
