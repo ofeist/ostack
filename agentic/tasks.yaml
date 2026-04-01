@@ -9,3 +9,13 @@ tasks:
     worktree: "worktrees/ostack-task-0001-builder-organizer-a"
     next_actor: null
     next_action: "Completed"
+  - id: "TASK-0002"
+    title: "Clean up workflow state after first Builder-Reviewer loop"
+    status: "ready"
+    owner: "builder-organizer-a"
+    participants:
+      - "builder-organizer-a"
+    branch: "chore/task-0002-cleanup-workflow-state"
+    worktree: "worktrees/ostack-task-0002-builder-organizer-a"
+    next_actor: "builder-organizer-a"
+    next_action: "Builder-Organizer may begin execution; move to in_progress only when work actually starts"

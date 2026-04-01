@@ -30,6 +30,19 @@ Mismatch handling:
 - when a task is `ready` and you actually begin execution, move it to `in_progress`
 - write the first execution-start handoff only when the task moves from `ready` to `in_progress`
 
+Reporting rule:
+- `draft` -> `ready` is an approval / administrative transition, not execution
+- when only moving a task from `draft` to `ready`, report `Outcome: ready`
+- use `in_progress` only when execution has actually started
+- do not report `in_progress` unless the execution-start transition and execution-start handoff have occurred
+
+Commit / push rule:
+- after a meaningful, reviewable workflow transition is completed, commit and push that transition
+- this includes coherent administrative transitions such as `draft` -> `ready`
+- do not commit every tiny edit
+- use commit / push only for coherent slice boundaries or meaningful workflow-state transitions
+- do not push half-finished work
+
 Start by returning a short confirmation block with:
 - confirmed actor
 - confirmed task

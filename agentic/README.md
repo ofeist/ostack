@@ -145,6 +145,7 @@ That role:
 - implements the slice
 - keeps task coordination current
 - writes explicit handoff files for checkpoints, blockers, review requests, and completion
+- commits and pushes coherent slice boundaries and meaningful workflow-state transitions, including approved `draft` -> `ready` transitions
 - follows the worktree policy
 
 ## Reviewer
