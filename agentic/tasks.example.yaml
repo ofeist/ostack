@@ -7,4 +7,4 @@ tasks:
       - "builder-organizer-a"
     next_actor: "builder-organizer-a"
     branch: "feature/task-0001-bootstrap-runtime-files"
-    worktree: "../worktrees/ostack-task-0001-builder-organizer-a"
+    worktree: "worktrees/ostack-task-0001-builder-organizer-a"

@@ -13,7 +13,7 @@ TASK-0001
 feature/task-0001-bootstrap-runtime-files
 
 ## Worktree
-../worktrees/ostack-task-0001-builder-organizer-a
+worktrees/ostack-task-0001-builder-organizer-a
 
 ## Type
 start

@@ -3,10 +3,14 @@
 ## ID
 TASK-0001
 
-Use the next available `TASK-####` identifier from the existing set under `agentic/tasks/`.
+Use the next available `TASK-####` identifier from the existing set under `agentic/tasks/` whose basename matches `TASK-####` or starts with `TASK-####-`.
 
 ## Status
 `draft` | `ready` | `in_progress` | `review` | `qa` | `blocked` | `done`
+
+When a task is first opened, start at `draft`. Move to `ready` only after explicit approval to begin implementation. Move to `in_progress` only when Builder-Organizer actually begins execution. Use `done` only when the task is actually complete. When a task reaches `done`, clear the task-level `next_actor` in `tasks.yaml` to `null`.
+
+Reopen the same task only if the goal and scope are still the same. Create a new task id for a new slice, a changed goal, a material scope expansion, or independently tracked follow-up work.
 
 ## Branch
 `<type>/<task-id>-<slug>`
