@@ -176,6 +176,35 @@ Minimal reviewability rule:
 - `changes_requested` means the slice must go back to Builder for fixes before approval
 - `blocked` means review cannot proceed because required review context, routing, or reviewable task state is missing or inconsistent
 
+## QA
+
+QA initialization comes from `agentic/prompts/init-qa.md`.
+
+QA reads, in order:
+- `AGENTS.md` if present
+- `agentic/README.md`
+- `agentic/prompts/QA_PROMPT.txt`
+- `agentic/tasks.yaml`
+- `agentic/state.yaml`
+- the assigned task folder under `agentic/tasks/<task-id>/`
+
+QA is distinct from Reviewer:
+- Reviewer checks the slice against the approved task contract and scope
+- QA checks verification quality, operational readiness, and unverified risk or gaps
+- QA should not simply repeat Reviewer findings unless they directly affect verification or readiness
+
+QA:
+- is read-only by default
+- does not implement
+- does not change task scope
+- writes only task-local QA handoff files
+- may commit and push only those QA handoff artifacts
+
+Minimal QA outcome rule:
+- `pass` means verification is sufficient for the slice and no material readiness gaps were found
+- `issues_found` means verification or readiness gaps should be addressed before relying on the slice
+- `blocked` means QA cannot proceed because required context, environment, or task state is missing or inconsistent
+
 ## Minimal Flow
 
 1. Copy `agentic/state.example.yaml` to `agentic/state.yaml` if runtime state has not been initialized yet.
