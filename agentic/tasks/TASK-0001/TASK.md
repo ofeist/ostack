@@ -6,7 +6,7 @@ TASK-0001
 Use the next available `TASK-####` identifier from the existing set under `agentic/tasks/` whose basename matches `TASK-####` or starts with `TASK-####-`.
 
 ## Status
-`ready`
+`done`
 
 When a task is first opened, start at `draft`. Move to `ready` only after explicit approval to begin implementation. Move to `in_progress` only when Builder-Organizer actually begins execution. Use `done` only when the task is actually complete. When a task reaches `done`, clear the task-level `next_actor` in `tasks.yaml` to `null`.
 
@@ -89,17 +89,17 @@ A task should usually move from `draft` to `ready` only if:
 - verification is concrete
 - open questions are either resolved or explicitly accepted
 
-Ready-state note:
-- branch and worktree intent are clear
-- the runtime file commit policy will be resolved within this approved docs/policy slice
+Completion note:
+- branch and worktree intent remained stable through execution
+- the runtime file policy was defined in the workflow docs within the approved docs-only scope
 
 ## Coordination Notes
 Runtime coordination belongs in `state.yaml`, `tasks.yaml`, and task-local handoff files.
 
 ## Open Questions
 Only if relevant while shaping the task.
-- Should live runtime files such as `agentic/state.yaml`, `agentic/tasks.yaml`, and `agentic/agent-config.yaml` be committed in normal repo use, or should they be treated as machine-local runtime state?
-- If the policy differs by file, which live runtime files are committed versus ignored?
+- Resolved in this task: live runtime files such as `agentic/state.yaml`, `agentic/tasks.yaml`, and `agentic/agent-config.yaml` are committed shared state for the active repo using the workflow.
+- Resolved in this task: those live runtime files are repo-specific runtime state and are not portable defaults for a different repo; new repos initialize fresh live runtime files from the committed `*.example.yaml` scaffold.
 
 ## Rollout Notes
 Only if relevant.
