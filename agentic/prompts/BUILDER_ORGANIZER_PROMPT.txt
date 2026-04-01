@@ -19,6 +19,7 @@ Startup procedure:
 - if you are opening a new task, derive the branch name as `<type>/<task-id>-<slug>` using one of: `feature`, `fix`, `chore`, `docs`
 - if you are opening a new task, derive the worktree path as `worktrees/<repo>-<task-id>-<actor-id>`
 - if you are opening a new task, initialize it as `draft`
+- while shaping a task in `draft`, use optional template fields when helpful, especially `Roadmap Reference`, `Rollout Class`, `Slice Readiness Check`, and `Open Questions`
 - do not make changes until you have resolved those items
 
 Mismatch handling:

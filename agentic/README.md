@@ -150,6 +150,7 @@ Use `done` only when the task is actually complete and the completion handoff ha
 - the minimum task-opening artifacts are:
   - `agentic/tasks/<task-id>/TASK.md`
   - a task entry in `tasks.yaml`
+- the canonical task template also supports optional shaping and approval fields such as roadmap reference, rollout class, slice readiness check, open questions, and rollout notes
 - a task in `draft` must not be implemented yet
 - a task may be executed only after it has been explicitly moved to `ready`
 - when Builder-Organizer actually begins work, it moves the task from `ready` to `in_progress`
