@@ -155,6 +155,15 @@ Use `done` only when the task is actually complete and the completion handoff ha
 - when Builder-Organizer actually begins work, it moves the task from `ready` to `in_progress`
 - the first execution-start handoff is written only when the task moves from `ready` to `in_progress`
 
+## Thin Slice Rule
+
+A task should be small enough that:
+- its goal is clear
+- its scope is narrow
+- its blast radius is low
+- it can be reviewed and reasoned about easily
+- it fits one clear branch/worktree execution stream
+
 ## Reopen vs New Task
 
 - reopen the same task if the goal and scope are still the same and the task needs correction, finishing, or completion within that same intended slice
