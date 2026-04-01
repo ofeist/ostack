@@ -45,6 +45,3 @@ The workflow docs now define:
 
 ## Outcome
 done
-
-## Next Actor
-builder-organizer-a
