@@ -1,5 +1,5 @@
 session:
-  objective: "Move TASK-0001 to ready_for_review"
+  objective: "Await task opening"
   updated_at: "2026-04-01T12:00:00+02:00"
   coordination_mode: "single-owner"
   parallelism:
@@ -7,10 +7,7 @@ session:
     max_active_tasks: 1
     max_agents_per_task: 1
 
-active_roles:
-  - role: "builder-organizer"
-    actor: "builder-organizer-a"
-    task: "TASK-0001"
+active_roles: []
 
 next_actor: "builder-organizer-a"
 blockers: []
