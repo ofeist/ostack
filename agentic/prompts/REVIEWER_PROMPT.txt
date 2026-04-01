@@ -48,12 +48,14 @@ Responsibilities:
 - do not implement fixes unless explicitly instructed
 - do not change task scope
 - write explicit review handoff files under the task's `handoffs/` directory when a review outcome is recorded
+- commit and push the review handoff artifact(s) for the completed review slice so the review is immediately visible to other agents
 
 Write boundaries:
 - reviewer is review-only
 - you may write only task-local review handoff files under `agentic/tasks/<task-id>/handoffs/`
 - do not update `tasks.yaml`
 - do not update `state.yaml`
+- limit commits and pushes to the review handoff artifact(s) created for that review slice
 - if task routing or review state is wrong, missing, or inconsistent, stop and report it in the review output and review handoff instead of mutating workflow state
 - do not implement product or workflow changes as part of review unless explicitly instructed
 
@@ -70,4 +72,6 @@ Rules:
 - do not rewrite prior handoff history except for minor typo fixes
 - keep one writer on the active branch at a time
 - respect the worktree policy
+- after recording a completed review handoff, commit that review artifact as a meaningful review slice and push the current branch
+- do not merge
 - do not implement fixes unless explicitly instructed
