@@ -38,6 +38,12 @@ agentic/
         0001-builder-organizer-a-start.md
 ```
 
+Initialize the live runtime files with:
+
+```bash
+bash agentic/bootstrap-runtime.sh
+```
+
 ## Core Model
 
 - `state.yaml` is the global coordination snapshot.
@@ -60,19 +66,22 @@ agentic/
 
 - `state.next_actor` is the global next actor
 - `tasks[].next_actor` is the next actor for that specific task
+- when a task reaches `done`, set `tasks[].next_actor` to `null`
 - task routing comes primarily from `tasks.yaml`
 - `agent-config.yaml` defines enabled role configuration and optional prompt metadata
 
 ## Naming Conventions
 
-- worktrees use `../worktrees/<repo>-<task-id>-<actor-id>`
+- linked worktrees live under the repo-local `worktrees/` directory
+- worktrees use `worktrees/<repo>-<task-id>-<actor-id>`
 - branches use `<type>/<task-id>-<slug>`
 - task handoff files use `NNNN-<actor-id>-<event>.md`
 
 ## Task ID Rule
 
 - task ids use `TASK-####`
-- determine the next id from the set of existing `TASK-####` identifiers under `agentic/tasks/`
+- determine the next id from the set of existing identifiers under `agentic/tasks/` whose basename matches `TASK-####` or starts with `TASK-####-`
+- ignore `_template`, `TASK_TEMPLATE.md`, and any path outside that `TASK-####` namespace
 - the next task id is the next zero-padded number in that sequence
 
 ## Branch Naming Rule
@@ -113,13 +122,15 @@ That role:
 1. Copy `agentic/state.example.yaml` to `agentic/state.yaml` if runtime state has not been initialized yet.
 2. Copy `agentic/tasks.example.yaml` to `agentic/tasks.yaml` if the task registry has not been initialized yet.
 3. Copy `agentic/agent-config.example.yaml` to `agentic/agent-config.yaml` if role activation config has not been initialized yet.
-4. Copy `agentic/tasks/_template/` to `agentic/tasks/TASK-0001/`.
-5. Fill in `TASK.md`.
-6. Create or update `tasks.yaml`.
-7. Create or update `state.yaml`.
-8. Work in the assigned branch and worktree.
-9. Write numbered handoff files under `handoffs/`.
+4. Copy `agentic/tasks/_template/` to `agentic/tasks/<next-task-id>/`.
+5. Fill in `TASK.md` and open the task in `draft`.
+6. Create or update `tasks.yaml` with the new task in `draft` and `next_actor: null`.
+7. Move the task to `ready` only after explicit approval to start implementation.
+8. Begin execution only when the task is `ready`; at that point Builder-Organizer moves it to `in_progress`.
+9. Write the first execution-start handoff only when the task moves from `ready` to `in_progress`.
 10. Hand off or close the task explicitly.
+
+The bootstrap script initializes the runtime files from the committed example files and refuses to overwrite existing runtime files.
 
 ## Startup Model
 
@@ -129,6 +140,34 @@ An agent should initialize in this order:
 2. Read `tasks.yaml` to determine task ownership, branch, worktree, and task-level next actor.
 3. Read `state.yaml` to understand the global objective, blockers, and global next actor.
 4. Read the selected task folder to execute the task and record task-local handoffs.
+
+Use `done` only when the task is actually complete and the completion handoff has been written.
+
+## Task Opening Workflow
+
+- opening a task is administrative, not execution
+- a newly opened task starts as `draft`
+- the minimum task-opening artifacts are:
+  - `agentic/tasks/<task-id>/TASK.md`
+  - a task entry in `tasks.yaml`
+- a task in `draft` must not be implemented yet
+- a task may be executed only after it has been explicitly moved to `ready`
+- when Builder-Organizer actually begins work, it moves the task from `ready` to `in_progress`
+- the first execution-start handoff is written only when the task moves from `ready` to `in_progress`
+
+## Thin Slice Rule
+
+A task should be small enough that:
+- its goal is clear
+- its scope is narrow
+- its blast radius is low
+- it can be reviewed and reasoned about easily
+- it fits one clear branch/worktree execution stream
+
+## Reopen vs New Task
+
+- reopen the same task if the goal and scope are still the same and the task needs correction, finishing, or completion within that same intended slice
+- create a new task id if the follow-up is a new slice, the goal changes, the scope expands materially, or the new work should be tracked independently
 
 ## Builder-Organizer Return Format
 

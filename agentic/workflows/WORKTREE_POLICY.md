@@ -14,7 +14,8 @@ Use separate worktrees when parallel work is needed, but keep the first usable w
 
 ## Naming Convention
 
-- worktrees use `../worktrees/<repo>-<task-id>-<actor-id>`
+- linked worktrees live under the repo-local `worktrees/` directory
+- worktrees use `worktrees/<repo>-<task-id>-<actor-id>`
 - branches use `<type>/<task-id>-<slug>`
 - allowed task types are `feature`, `fix`, `chore`, and `docs`
 - future review or QA branches may use `review/<task-id>-<slug>` or `qa/<task-id>-<slug>` when needed
