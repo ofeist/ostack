@@ -7,19 +7,19 @@ builder-organizer-a
 builder-organizer-a
 
 ## Task
-TASK-0001
+<task-id>
 
 ## Branch
-feature/task-0001-bootstrap-runtime-files
+<type>/<task-id>-<slug>
 
 ## Worktree
-worktrees/ostack-task-0001-builder-organizer-a
+worktrees/<repo>-<task-id>-<actor-id>
 
 ## Type
 start
 
 ## Summary
-Started the first implementation pass and recorded the initial task position.
+Started the scoped slice and recorded the initial task position.
 
 ## Context
 Beginning the scoped slice described in `TASK.md`.
@@ -31,7 +31,7 @@ Beginning the scoped slice described in `TASK.md`.
 - not run yet
 
 ## Risks / Notes
-- edge case X has not been exercised yet
+- none noted yet
 
 ## Outcome
 in_progress

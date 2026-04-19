@@ -1,17 +1,17 @@
 # Handoff: <title>
 
-Copy this into a role-specific file under a per-task directory, for example:
-- `agentic/handoffs/TASK-0001-cut-release-workflow/builder.md`
-- `agentic/handoffs/TASK-0001-cut-release-workflow/review.md`
-- `agentic/handoffs/TASK-0001-cut-release-workflow/qa.md`
+Legacy reference template only.
 
-Use one file per role to avoid merge conflicts.
+For new workflow events, use task-local handoffs instead:
+- `agentic/tasks/<task-id>/handoffs/NNNN-<actor-id>-<event>.md`
+
+Prefer the active task-local templates under `agentic/tasks/_template/handoffs/`.
 
 ## Role
 Builder / Reviewer / QA
 
 ## Branch
-`feature/<task-slug>` or `review/*` / `qa/*`
+`<type>/<task-id>-<slug>` or `review/*` / `qa/*`
 
 ## Target commit
 Which commit or branch tip was implemented, reviewed, or validated?

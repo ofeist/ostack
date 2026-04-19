@@ -1,12 +1,16 @@
 # Handoffs
 
-Use one directory per task and one file per role.
+This directory is legacy reference material.
 
-Recommended shape:
-- `agentic/handoffs/TASK-XXXX-<task-slug>/builder.md`
-- `agentic/handoffs/TASK-XXXX-<task-slug>/review.md`
-- `agentic/handoffs/TASK-XXXX-<task-slug>/qa.md`
-- optional: `agentic/handoffs/TASK-XXXX-<task-slug>/owner.md`
+Do not use `agentic/handoffs/` for new workflow events.
+
+Current handoffs are task-local:
+- `agentic/tasks/<task-id>/handoffs/NNNN-<actor-id>-<event>.md`
+
+Examples:
+- `agentic/tasks/TASK-0001/handoffs/0001-builder-organizer-a-start.md`
+- `agentic/tasks/TASK-0001/handoffs/0002-builder-organizer-a-complete.md`
+- `agentic/tasks/TASK-0001/handoffs/0003-reviewer-1-approve.md`
 
 Why:
 - avoids merge conflicts between roles
@@ -14,8 +18,6 @@ Why:
 - removes the need to copy/paste findings between workdirs
 
 Rules:
-- Builder writes `builder.md`
-- Reviewer writes `review.md`
-- QA writes `qa.md`
-- Owner records final decisions or rejected findings in `owner.md` when needed
-- prefer updating these files over creating ad hoc scratch notes elsewhere
+- one handoff event is one new numbered file
+- write handoffs under the relevant task folder only
+- do not rewrite prior handoff history except for minor typo fixes

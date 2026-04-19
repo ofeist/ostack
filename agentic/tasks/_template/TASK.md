@@ -1,7 +1,7 @@
 # Task: <title>
 
 ## ID
-TASK-0001
+`TASK-####`
 
 Use the next available `TASK-####` identifier from the existing set under `agentic/tasks/` whose basename matches `TASK-####` or starts with `TASK-####-`.
 

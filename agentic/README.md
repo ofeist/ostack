@@ -9,11 +9,18 @@ The workflow is task-centric, worktree-aware, and multi-agent aware from the sta
 ```text
 agentic/
   README.md
+  PORTING.md
+  bootstrap-runtime.sh
   state.example.yaml
   tasks.example.yaml
   agent-config.example.yaml
   prompts/
     BUILDER_ORGANIZER_PROMPT.txt
+    REVIEWER_PROMPT.txt
+    QA_PROMPT.txt
+    init-builder-organizer.md
+    init-reviewer.md
+    init-qa.md
   workflows/
     WORKTREE_POLICY.md
     PORTING.md
@@ -286,6 +293,8 @@ Completion:
 
 The following remain in the repo as reference material during migration:
 - legacy v1 task files and handoff examples
+- legacy top-level handoff docs and templates under `agentic/handoffs/`
+- legacy v1 prompt files such as `BUILDER_PROMPT.txt` and `PLANNER_PROMPT.txt`
 - `agentic/experiments/workflow-v2/`
 
 New workflow changes should use the structure described in this file.

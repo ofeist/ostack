@@ -7,10 +7,17 @@ The portable unit is the committed scaffold, not another repo's live runtime sta
 ## Copy By Default
 
 - `agentic/README.md`
+- `agentic/PORTING.md`
+- `agentic/bootstrap-runtime.sh`
 - `agentic/state.example.yaml`
 - `agentic/tasks.example.yaml`
 - `agentic/agent-config.example.yaml`
 - `agentic/prompts/BUILDER_ORGANIZER_PROMPT.txt`
+- `agentic/prompts/REVIEWER_PROMPT.txt`
+- `agentic/prompts/QA_PROMPT.txt`
+- `agentic/prompts/init-builder-organizer.md`
+- `agentic/prompts/init-reviewer.md`
+- `agentic/prompts/init-qa.md`
 - `agentic/workflows/WORKTREE_POLICY.md`
 - `agentic/workflows/PORTING.md`
 - `agentic/tasks/_template/TASK.md`
@@ -27,6 +34,8 @@ Optional:
 - any existing task instance under `agentic/tasks/`
 - any live handoff history
 - repo-specific runtime history
+- legacy top-level handoff docs or templates under `agentic/handoffs/`
+- legacy v1 prompt files such as `BUILDER_PROMPT.txt` or `PLANNER_PROMPT.txt`
 
 ## Runtime Lifecycle Policy
 
@@ -48,3 +57,9 @@ Optional:
 - if the target repo has the scaffold but no live runtime files yet, run `bash agentic/bootstrap-runtime.sh`
 - the bootstrap script copies each committed `*.example.yaml` file into its live runtime counterpart
 - the bootstrap script refuses to overwrite existing live runtime files, so it is an initialization step, not a sync step
+
+## Export Helper
+
+- `bash agentic/export-workflow.sh /path/to/target-repo` copies the default scaffold listed above
+- the export helper does not copy live runtime files, task instances, or legacy handoff history
+- after export, initialize fresh runtime files in the target repo only when they are absent
